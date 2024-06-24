@@ -45,10 +45,10 @@ export default function TransferForm() {
                     description: 'Transaction has been sent',
                     status: 'success',
                 })
-            } catch (e) {
+            } catch (e: any) {
                 toast({
                     title: 'Transaction Failed',
-                    description: JSON.stringify(e.message),
+                    description: e?.message || "unknown error",
                     status: 'error',
                 })
             }
@@ -64,7 +64,6 @@ export default function TransferForm() {
                     <FormLabel className="mt-3">Select account from extension</FormLabel>
                     <Select placeholder='Select Account' id="from" name="from" value={formik.values.from}
                             onChange={(e) => {
-                                console.log("here")
                                 formik.handleChange(e)
                                 selectAccount?.(accounts.find(account => account.address === e.target.value))
                             }}>
