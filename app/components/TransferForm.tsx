@@ -1,5 +1,4 @@
-"use client"
-
+'use client'
 import {Button, FormControl, FormHelperText, FormLabel, Heading, Input, Select, useToast} from "@chakra-ui/react";
 import {useAccounts} from "@/app/hooks";
 import {api} from "@/app/libs/api";

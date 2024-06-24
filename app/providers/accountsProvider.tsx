@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import {Account} from "@/app/providers/types";
 import {createContext, PropsWithChildren, useEffect, useState} from "react";
