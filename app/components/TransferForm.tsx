@@ -28,6 +28,8 @@ export default function TransferForm() {
         },
         //check if amount is less than balance
         validationSchema: Yup.object({
+            to: Yup.string().required('To address is required'),
+            from: Yup.string().required('From address is required'),
             amount: Yup.number().min(0, 'Amount must be greater than 0').max(data.data || 0, 'Amount must be less than balance'),
         }),
         onSubmit: async (values) => {
@@ -72,12 +74,22 @@ export default function TransferForm() {
                             )
                         })}
                     </Select>
+                    {formik.touched.from && formik.errors.from ? (
+                        <span className="text-red-500 text-sm">{formik.errors.from}</span>) : null}
+
+
                     <FormLabel className="mt-3">To Account</FormLabel>
                     <Input id='to' name='to' onChange={formik.handleChange} value={formik.values.to} type='text'/>
+                    {formik.touched.to && formik.errors.to ? (
+                        <span className="text-red-500 text-sm">{formik.errors.to}</span>) : null}
+
                     <FormLabel className="mt-3">Amount</FormLabel>
                     <Input id='amount' name='amount' onChange={formik.handleChange} value={formik.values.amount}
                            type='number'/>
                     <FormHelperText>{`Current Balance: ${data.data || 0} ROC`}</FormHelperText>
+                    {formik.touched.amount && formik.errors.amount ? (
+                        <span className="text-red-500 text-sm">{formik.errors.amount}</span>) : null}
+
                     <Button
                         className='w-full'
                         mt={4}
